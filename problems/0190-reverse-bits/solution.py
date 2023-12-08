@@ -20,7 +20,7 @@ class Solution:
         # Fixed number of steps
         for i in range(32):
             res <<= 1
-            # n % 2 = n&1
+            # for unsigned: n % 2 = n&1
             res += n & 1
             n >>= 1
 
