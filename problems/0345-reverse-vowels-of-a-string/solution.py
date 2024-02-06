@@ -24,3 +24,23 @@ class Solution:
             l += 1
             r -= 1
         return "".join(s)
+
+    def reverseVowels2(self, s: str) -> str:
+        """Stack + two iterations"""
+        vowels = set(["a", "e", "i", "o", "u"])
+        stack = []
+
+        # add all vowels to stack
+        for ch in s:
+            if ch.lower() in vowels:
+                stack.append(ch)
+
+        # pop all vowels from stack when a vowel is encountered in the og string
+        result = ""
+        for ch in s:
+            if ch.lower() in vowels:
+                result += stack.pop()
+            else:
+                result += ch
+
+        return result
