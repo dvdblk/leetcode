@@ -1,10 +1,12 @@
 from typing import Optional
 
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, x):
         self.val = x
         self.next = None
+
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
@@ -43,3 +45,19 @@ class Solution:
                 # if slow and fast meet, there was a cycle
                 return True
 
+    def hasCycle_2pt2(self, head: Optional[ListNode]) -> bool:
+        """Two pointer 2."""
+        slow, fast = head, head
+
+        while slow is not None:
+            slow = slow.next
+            if fast is not None:
+                if fast.next is not None:
+                    fast = fast.next.next
+                else:
+                    fast = fast.next
+
+            if fast is not None and slow == fast:
+                return True
+
+        return False
