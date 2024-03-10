@@ -30,3 +30,31 @@ class Solution:
             vals.append(val_dict[i])
 
         return vals
+
+    def rightSideView2(self, root: Optional[TreeNode]) -> List[int]:
+        """BFS w/o hashmap"""
+        result = []
+        last_level = 0
+        last_val = root.val if root is not None else None
+
+        queue = deque([(root, 0)])
+
+        while queue:
+            node, level = queue.popleft()
+
+            if node is not None:
+                # add last value to the result if a new level is reached
+                if last_level < level:
+                    result.append(last_val)
+                last_level = level
+                last_val = node.val
+
+                queue.append((node.left, level+1))
+                queue.append((node.right, level+1))
+
+        # add the final last_val if needed
+        if last_val is not None:
+            result.append(last_val)
+
+        return result
+
