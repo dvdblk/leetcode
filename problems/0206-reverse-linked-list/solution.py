@@ -39,15 +39,14 @@ class Solution:
 
         return result
 
-    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        result = None
-        curr = head
+    def reverseList3(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        prev, curr = None, head
 
         while curr is not None:
             # Swap curr.next first
-            nxt = curr.next
-            curr.next = result
-            result = curr
-            curr = nxt
+            next_node = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next_node
 
-        return result
+        return prev
