@@ -1,5 +1,26 @@
 class Solution:
+
     def isIsomorphic(self, s: str, t: str) -> bool:
+        """Two hashmaps"""
+        new_s = ""
+        # bijective mappings
+        mapping, mapping_inv = {}, {}
+
+        for i, ch in enumerate(s):
+            # check if current char of s is already mapped
+            if new_ch := mapping.get(ch):
+                new_s += new_ch
+            else:
+                mapping[ch] = t[i]
+                # for cases when bijective property would break, return False
+                if mapping_inv.get(t[i]) is not None:
+                    return False
+                mapping_inv[t[i]] = ch
+                new_s += t[i]
+
+        return new_s == t
+
+    def isIsomorphic2(self, s: str, t: str) -> bool:
         map_s, map_t = {}, {}
         i_s, i_t = 0, 0
         res_s, res_t = "", ""
