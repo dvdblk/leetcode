@@ -3,7 +3,7 @@ from typing import List
 
 class Solution:
     def subsetXORSum(self, nums: List[int]) -> int:
-        """Naive O(n^2)"""
+        """Naive O(n*2^n)"""
         superset = [[]]
         for n in nums:
             superset += [sub + [n] for sub in superset]
