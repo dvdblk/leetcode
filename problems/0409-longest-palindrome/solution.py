@@ -1,3 +1,6 @@
+from collections import Counter
+
+
 class Solution:
     def longestPalindrome(self, s: str) -> int:
         counts = Counter()
@@ -23,3 +26,18 @@ class Solution:
             length += 1
 
         return length
+
+    def longestPalindrome2(self, s: str) -> int:
+        """Faster solution using Counter."""
+        c = Counter(s)
+        result = 0
+        max_odd = 0
+
+        for v in c.values():
+            if v % 2 == 0:
+                result += v
+            else:
+                result += v - 1
+                max_odd = max(max_odd, v)
+
+        return result + 1 if max_odd > 0 else result
